@@ -1,0 +1,29 @@
+# Artefactos de Construcción: Job 1 genera un archivo .txt con un mensaje. Job 2 debe descargar ese archivo y mostrar su contenido.
+
+name: Ejercicio4
+on:
+    push:
+        branches: [ main ]
+    pull_request:
+        branches: [ main ]
+jobs:
+    create-file:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Create a text file
+              run: echo "Hello from Job 1!" > message.txt
+            - name: Upload artifact
+              uses: actions/upload-artifact@v2
+              with:
+                name: message-artifact
+                path: message.txt
+    read-file:
+        runs-on: ubuntu-latest
+        needs: create-file
+        steps:
+            - name: Download artifact
+              uses: actions/download-artifact@v2
+              with:
+                name: message-artifact
+            - name: Read and display the content
+              run: cat message.txt   

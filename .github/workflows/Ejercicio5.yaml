@@ -1,0 +1,19 @@
+# Filtros de Rama y Ruta: Crea un workflow que solo se active cuando haya un push en la rama develop Y que solo afecte a archivos dentro de una carpeta llamada docs/.
+
+name: Ejercicio5
+on:
+  push:
+    branches: [ develop ]
+    paths:
+      - 'docs/**'
+  pull_request:
+    branches: [ develop ]
+    paths:
+      - 'docs/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Documentation
+        run: echo "Building documentation for changes in the docs/ folder..."

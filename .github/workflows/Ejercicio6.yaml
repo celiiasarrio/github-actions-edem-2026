@@ -1,0 +1,20 @@
+# Validación de JSON: Crea un workflow que use una acción de la comunidad para validar que un archivo data.json en el repo tiene un formato correcto. 
+# Para este ejercicio debeis generar un archivo .json en la raíz del repositorio con las claves (curso, modulo y alumnos)
+
+name: Ejercicio6
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  validate-json:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Validate JSON file
+        uses: amitsingh-007/json-validator-action@v1
+        with:
+          file: 'Ejercicio6.json'
+
+        
