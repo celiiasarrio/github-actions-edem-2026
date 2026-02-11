@@ -1,0 +1,13 @@
+# Programación Temporal (Cron): Configura un workflow que se ejecute automáticamente todos los lunes a las 9:00 AM.
+
+name: Ejercicio 8 - Programación Temporal
+on:
+  schedule:
+    - cron: '0 9 * * 1' # Ejecuta todos los lunes a las 9:00 AM
+jobs:
+  scheduled-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ejecutar tarea programada
+        run: echo "¡Este workflow se ejecuta automáticamente todos los lunes a las 9:00 AM!"
+        

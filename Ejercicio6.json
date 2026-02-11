@@ -1,6 +1,9 @@
-curso: "GitHub Actions"
-modulo: "Ejercicio 6"
-alumnos: 
-  - "Celia"
-  - "Juan"
-  - "María"
+{
+  "curso": "GitHub Actions",
+  "modulo": "Ejercicio 6",
+  "alumnos": [
+    "Celia",
+    "Juan",
+    "María"
+  ]
+}

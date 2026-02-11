@@ -1,0 +1,28 @@
+# Salidas entre Jobs (Outputs): El Job A genera un número aleatorio y lo pasa como "output" al Job B.
+
+name: Ejercicio 7 - Salidas entre Jobs
+on:
+  push:
+    branches:
+      - main
+jobs:
+  jobA:
+    runs-on: ubuntu-latest
+    outputs:
+      random_number: ${{ steps.generate_random.outputs.random_number }}
+    steps:
+      - name: Generar número aleatorio
+        id: generate_random
+        run: |
+          RANDOM_NUMBER=$((RANDOM % 100 + 1))
+          echo "Número aleatorio generado: $RANDOM_NUMBER"
+          echo "::set-output name=random_number::$RANDOM_NUMBER"
+
+  jobB:
+    needs: jobA
+    runs-on: ubuntu-latest
+    steps:
+      - name: Usar el número aleatorio de Job A
+        run: |
+          echo "Número aleatorio recibido de Job A: ${{ needs.jobA.outputs.random_number }}"
+          
